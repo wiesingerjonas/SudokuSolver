@@ -21,6 +21,13 @@ public class Main extends PApplet {
     }
 
     private void drawSudoku() {
-        rect((int)(windowSize/6), (int)(windowSize/40), (int)(windowSize*2/3), (int)(windowSize*2/3));
+
+        int sudokuSize = (int)(windowSize*2/3);
+
+        rect((int)(windowSize/6), (int)(windowSize/40), sudokuSize, sudokuSize);
+
+        for (int i = 1; i < 9; i++) {
+            line((int) ((sudokuSize/9)*i + windowSize/6), (int)(windowSize/40), (int) ((sudokuSize/9)*i + windowSize/6), (int)(windowSize/40)+sudokuSize);
+        }
     }
 }
