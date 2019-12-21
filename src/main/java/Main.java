@@ -17,7 +17,13 @@ public class Main extends PApplet {
     }
 
     public void draw() {
+
+        //Zeichnet Sudoku
         drawSudoku();
+
+        if(mousePressed){
+            getCoordinates();
+        }
     }
 
     private void drawSudoku() {
@@ -60,6 +66,28 @@ public class Main extends PApplet {
                     (int) ((sudokuSize/3)*i + windowSize/40),
                     (int)(windowSize/6 + sudokuSize),
                     (int) ((sudokuSize/3)*i + windowSize/40));
+        }
+    }
+
+    private void getCoordinates() {
+
+        int sudokuSize = (windowSize*2/3);
+
+        char[] letterRow = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'};
+
+        if(     mouseX >= (int)(windowSize/6) &&
+                mouseX <= (int)(windowSize/6) + sudokuSize &&
+                mouseY >= (int)(windowSize/40) &&
+                mouseY <= (int)(windowSize/40) + sudokuSize) {
+
+            for (int i = 0; i < 9; i++) {
+                if(     mouseX >= (sudokuSize/9)*i + windowSize/6 &&
+                        mouseX <= (sudokuSize/9)*(i+1) + windowSize/6){
+
+                    System.out.println(letterRow[i]);;
+                }
+            }
+
         }
     }
 }
