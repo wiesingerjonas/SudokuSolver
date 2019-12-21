@@ -103,7 +103,7 @@ public class Main extends PApplet {
 
         int marginTop = sudokuSize/18;
 
-        textSize((int)(sudokuSize/9));
+        textSize((int)(sudokuSize/12));
 
         for (int i = 0; i < 9; i++) {
             rect((int)((windowSize/6) + (sudokuSize/9)*i),
@@ -113,8 +113,9 @@ public class Main extends PApplet {
 
             fill(0);
 
-            text(i+1, (int)((windowSize/6 + (sudokuSize/9)*i) + (sudokuSize/9)/4),
-                    (int)(windowSize/40 + sudokuSize + marginTop + sudokuSize/10));
+            text(i+1,
+                    (int)((windowSize/6 + (sudokuSize/9)*i) + (sudokuSize/9)/3),
+                    (int)(windowSize/40 + sudokuSize + marginTop + sudokuSize/11));
 
             fill(250);
         }
