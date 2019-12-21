@@ -84,7 +84,13 @@ public class Main extends PApplet {
                 if(     mouseX >= (sudokuSize/9)*i + windowSize/6 &&
                         mouseX <= (sudokuSize/9)*(i+1) + windowSize/6){
 
-                    System.out.println(letterRow[i]);;
+                    System.out.print(letterRow[i]);;
+                }
+
+                if(     mouseY >= (sudokuSize/9)*i + windowSize/40 &&
+                        mouseY <= (sudokuSize/9)*(i+1) + windowSize/40){
+
+                    System.out.println(" " + (i+1));;
                 }
             }
 
