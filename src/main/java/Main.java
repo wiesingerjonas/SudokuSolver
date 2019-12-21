@@ -2,7 +2,9 @@ import processing.core.PApplet;
 
 public class Main extends PApplet {
 
-    private int windowSize = 800;
+    private int windowSize = 600;
+    int sudokuSize = (windowSize*2/3);
+
 
     public static void main(String[] args) {
         PApplet.main("Main", args);
@@ -24,6 +26,8 @@ public class Main extends PApplet {
         if(mousePressed){
             getCoordinates();
         }
+
+        drawNumbers();
     }
 
     private void drawSudoku() {
@@ -71,8 +75,6 @@ public class Main extends PApplet {
 
     private void getCoordinates() {
 
-        int sudokuSize = (windowSize*2/3);
-
         char[] letterRow = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'};
 
         if(     mouseX >= (int)(windowSize/6) &&
@@ -95,5 +97,27 @@ public class Main extends PApplet {
             }
 
         }
+    }
+
+    private void drawNumbers() {
+
+        int marginTop = sudokuSize/18;
+
+        textSize((int)(sudokuSize/9));
+
+        for (int i = 0; i < 9; i++) {
+            rect((int)((windowSize/6) + (sudokuSize/9)*i),
+                    (int)(windowSize/40) + sudokuSize + marginTop,
+                    (int)(sudokuSize/9)+4,
+                    (int)(sudokuSize/9));
+
+            fill(0);
+
+            text(i+1, (int)((windowSize/6 + (sudokuSize/9)*i) + (sudokuSize/9)/4),
+                    (int)(windowSize/40 + sudokuSize + marginTop + sudokuSize/10));
+
+            fill(250);
+        }
+
     }
 }
