@@ -3,8 +3,9 @@ import processing.core.PApplet;
 public class Main extends PApplet {
 
     private int windowSize = 600;
-    int sudokuSize = (windowSize*2/3);
+    private int sudokuSize = (windowSize*2/3);
 
+    private int occupiedNumber = -1;
 
     public static void main(String[] args) {
         PApplet.main("Main", args);
@@ -20,13 +21,15 @@ public class Main extends PApplet {
 
     public void draw() {
 
-        //Zeichnet Sudoku
+        //zeichnet Sudoku
         drawSudoku();
 
+        //gibt Koordinaten des ausgewählten Feldes aus
         if(mousePressed){
             getCoordinates();
         }
 
+        //zeichnet Nummernfeld
         drawNumbers();
     }
 
@@ -106,6 +109,15 @@ public class Main extends PApplet {
         textSize((int)(sudokuSize/12));
 
         for (int i = 0; i < 9; i++) {
+
+            if(mouseX > (int)((windowSize/6) + (sudokuSize/9)*i) &&
+                    mouseX < (int)((windowSize/6) + (sudokuSize/9)*i + (sudokuSize/9)) &&
+                    mouseY > (int)(windowSize/40) + sudokuSize + marginTop &&
+                    mouseY < (int)(windowSize/40) + sudokuSize + marginTop + sudokuSize/9){
+
+                hoverNumbers(i);
+            }
+
             rect((int)((windowSize/6) + (sudokuSize/9)*i),
                     (int)(windowSize/40) + sudokuSize + marginTop,
                     (int)(sudokuSize/9)+4,
@@ -113,12 +125,22 @@ public class Main extends PApplet {
 
             fill(0);
 
+
             text(i+1,
                     (int)((windowSize/6 + (sudokuSize/9)*i) + (sudokuSize/9)/3),
                     (int)(windowSize/40 + sudokuSize + marginTop + sudokuSize/11));
-
             fill(250);
         }
 
+    }
+
+    private void hoverNumbers(int index){
+        fill(225);
+
+        if (mousePressed){
+            fill(215);
+
+            occupiedNumber = index+1;
+        }
     }
 }
