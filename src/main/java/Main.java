@@ -6,6 +6,8 @@ public class Main extends PApplet {
     private int sudokuSize = (windowSize*2/3);
 
     private int occupiedNumber = -1;
+    private Field[] fields;
+    boolean done = false;
 
     public static void main(String[] args) {
         PApplet.main("Main", args);
@@ -20,6 +22,13 @@ public class Main extends PApplet {
     }
 
     public void draw() {
+
+        while (!done){
+
+            fields = createFields();
+
+            done = true;
+        }
 
         //zeichnet Sudoku
         drawSudoku();
@@ -142,5 +151,20 @@ public class Main extends PApplet {
 
             occupiedNumber = index+1;
         }
+    }
+
+    private Field[] createFields() {
+        char[] letterRow = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'};
+
+        Field[] fields = new Field[81];
+
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                fields[i*9+j] = new Field(letterRow[j] + Integer.toString(((int)((i*9+j)/9) + 1)));
+                System.out.println(letterRow[j] + Integer.toString(((int)((i*9+j)/9) + 1)));
+            }
+        }
+
+        return fields;
     }
 }
